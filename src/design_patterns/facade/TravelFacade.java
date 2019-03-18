@@ -1,0 +1,39 @@
+package design_patterns.facade;
+
+public class TravelFacade {
+    private BookingInterface flightBooking;
+    private BookingInterface trainBooking;
+    private BookingInterface hotelBooking;
+
+    enum BookingType {
+        Flight, Train, Hotel, Flight_And_Hotel, Train_And_Hotel
+    }
+
+    public TravelFacade(){
+        flightBooking = new FlightBooking();
+        trainBooking = new TrainBooking();
+        hotelBooking = new HotelBooking();
+    }
+
+    public void book (BookingType type, BookingInfo info) {
+        switch (type){
+            case Flight:
+                flightBooking.book(info);
+                break;
+            case Train:
+                trainBooking.book(info);
+                break;
+            case Hotel:
+                hotelBooking.book(info);
+                break;
+            case Flight_And_Hotel:
+                flightBooking.book(info);
+                hotelBooking.book(info);
+                break;
+            case Train_And_Hotel:
+                trainBooking.book(info);
+                hotelBooking.book(info);
+                break;
+        }
+    }
+}
