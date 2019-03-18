@@ -1,13 +1,9 @@
 package design_pattern.factory;
 
-import design_pattern.factory.factoryHomeWork.Color;
-import design_pattern.factory.factoryHomeWork.ColorFactory;
-
 public class FactoryPatternDemo {
 
     public static void main(String[] args) {
-        ShapeFactory shapeFactory = new ShapeFactory();
-        ColorFactory colorFactory = new ColorFactory();
+        AbstractFactory shapeFactory = FacrotyProducer.getFactory("SHAPE");
 
         Shape shape1 = shapeFactory.getShape("CIRCLE");
         shape1.draw();
@@ -15,11 +11,11 @@ public class FactoryPatternDemo {
         Shape shape2 = shapeFactory.getShape("RECTANGLE");
         shape2.draw();
 
+        AbstractFactory colorFactory = FacrotyProducer.getFactory("COLOR");
         Color color1 = colorFactory.getColor("RED");
-        color1.draw();
+        color1.fill();
 
         Color color2 = colorFactory.getColor("BLUE");
-        color2.draw();
-
+        color2.fill();
     }
 }
